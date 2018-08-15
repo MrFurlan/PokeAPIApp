@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
 
 import br.com.opet.tds.pokeapiapp.Model.Pokemon;
 import br.com.opet.tds.pokeapiapp.Model.SpriteResponse;
@@ -36,6 +38,7 @@ public class InfoActivity extends Activity {
     private TextView textHeight;
     private TextView textWeight;
     private TextView textTypes;
+    public ImageView imgPokemon;
 
     private ProgressBar progressBar;
 
@@ -49,6 +52,7 @@ public class InfoActivity extends Activity {
         textHeight = findViewById(R.id.textHeight);
         textWeight = findViewById(R.id.textWeight);
         textTypes = findViewById(R.id.textTypes);
+        imgPokemon = findViewById(R.id.img_Pokemon);
         progressBar = findViewById(R.id.progressConnection);
 
         Intent i = getIntent();
@@ -81,19 +85,18 @@ public class InfoActivity extends Activity {
             textHeight.setText(String.valueOf(pokemon.getHeight()));
             textWeight.setText(String.valueOf(pokemon.getWeight()));
 
+            Picasso.get()
+                    .load("http://pokeapi.co/media/sprites/pokemon/back/"+info+".png")
+                    .resize(128,128)
+                    .priority(Picasso.Priority.HIGH)
+                    .into(imgPokemon);
+
             String stypes = "";
             for(Pokemon.Types types : pokemon.getTypes()){
                 stypes += types.getType().getName() + " ";
             }
 
             textTypes.setText(stypes);
-
-
-            //
-
-
-
-
 
             Log.i("POKERESPONSE",response);
             progressBar.setVisibility(ProgressBar.GONE);

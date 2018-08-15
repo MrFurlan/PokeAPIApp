@@ -14,6 +14,7 @@ public class Pokemon {
     @SerializedName("id")
     private long ID;
     private String name;
+    //private String sprites;
     private int height;
     private int weight;
     private List<Types> types;
@@ -33,9 +34,7 @@ public class Pokemon {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public int getHeight() {
         return height;
