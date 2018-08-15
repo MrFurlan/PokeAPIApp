@@ -87,7 +87,7 @@ public class InfoActivity extends Activity {
 
             Picasso.get()
                     .load("http://pokeapi.co/media/sprites/pokemon/back/"+info+".png")
-                    .resize(128,128)
+                    .resize(256,256)
                     .priority(Picasso.Priority.HIGH)
                     .into(imgPokemon);
 
