@@ -1,8 +1,10 @@
 package br.com.opet.tds.pokeapiapp.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,71 +24,24 @@ import br.com.opet.tds.pokeapiapp.R;
 
 public class MainActivity extends Activity {
 
-    private static final String URL = "https://pokeapi.co/api/v2/pokemon/1";
-    private RequestQueue queue;
-    private Gson gson;
-
-    private TextView textID;
-    private TextView textName;
-    private TextView textHeight;
-    private TextView textWeight;
-    private TextView textTypes;
-
-    private ProgressBar progressBar;
+    private TextView textInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textID = findViewById(R.id.textID);
-        textName = findViewById(R.id.textName);
-        textHeight = findViewById(R.id.textHeight);
-        textWeight = findViewById(R.id.textWeight);
-        textTypes = findViewById(R.id.textTypes);
-        progressBar = findViewById(R.id.progressConnection);
-
-        GsonBuilder builder = new GsonBuilder();
-        gson = builder.create();
-        queue = Volley.newRequestQueue(this);
-        callPokemon();
+        textInfo = findViewById(R.id.infoPokemon);
     }
 
-    private void callPokemon(){
-        progressBar.setVisibility(ProgressBar.VISIBLE);
-        StringRequest request = new StringRequest(Request.Method.GET,URL,onPokemonLoaded,onPokemonError);
-        queue.add(request);
+
+    public void buscarPokemon(View view) {
+        if (textInfo.getText().length() == 0){
+            Toast.makeText(this, "Informe o nome ou número para pesquisa!", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(MainActivity.this, InfoActivity.class);
+            i.putExtra("INFO", textInfo.getText().toString());
+            startActivity(i);
+        }
     }
-
-    private final Response.Listener<String> onPokemonLoaded = new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            Pokemon pokemon = gson.fromJson(response,Pokemon.class);
-
-            textID.setText(String.valueOf(pokemon.getID()));
-            textName.setText(pokemon.getName());
-            textHeight.setText(String.valueOf(pokemon.getHeight()));
-            textWeight.setText(String.valueOf(pokemon.getWeight()));
-
-            String stypes = "";
-            for(Pokemon.Types types : pokemon.getTypes()){
-                stypes += types.getType().getName() + " ";
-            }
-
-            textTypes.setText(stypes);
-
-            Log.i("POKERESPONSE",response);
-            progressBar.setVisibility(ProgressBar.GONE);
-
-        }
-    };
-
-    private final Response.ErrorListener onPokemonError = new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            Log.e("POKERESPONSE",error.toString());
-            Toast.makeText(MainActivity.this, "Erro ao capturar os dados.", Toast.LENGTH_SHORT).show();
-            progressBar.setVisibility(ProgressBar.GONE);
-        }
-    };
 }
