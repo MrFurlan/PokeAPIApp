@@ -22,7 +22,6 @@ import com.google.gson.GsonBuilder;
 import com.squareup.picasso.Picasso;
 
 import br.com.opet.tds.pokeapiapp.Model.Pokemon;
-import br.com.opet.tds.pokeapiapp.Model.SpriteResponse;
 import br.com.opet.tds.pokeapiapp.R;
 
 public class InfoActivity extends Activity {
@@ -86,8 +85,8 @@ public class InfoActivity extends Activity {
             textWeight.setText(String.valueOf(pokemon.getWeight()));
 
             Picasso.get()
-                    .load("http://pokeapi.co/media/sprites/pokemon/back/"+info+".png")
-                    .resize(256,256)
+                    .load("http://pokeapi.co/media/sprites/pokemon/"+info+".png")
+                    .resize(512,512)
                     .priority(Picasso.Priority.HIGH)
                     .into(imgPokemon);
 

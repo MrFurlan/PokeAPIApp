@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:clickable="true"
     android:orientation="vertical"
     tools:context="br.com.opet.tds.pokeapiapp.Activity.InfoActivity">
-
-    <ProgressBar
-        android:id="@+id/progressConnection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"/>
 
     <ImageView
         android:layout_width="128dp"
@@ -26,39 +25,128 @@
         android:layout_marginBottom="16dp"/>
 
     <TextView
-        android:hint="ID Do Pokemon"
-        android:id="@+id/textID"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:hint="Nome Do Pokemon"
-        android:id="@+id/textName"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:hint="Altura Do Pokemon"
-        android:id="@+id/textHeight"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:hint="Peso Do Pokemon"
-        android:id="@+id/textWeight"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:hint="Tipos"
-        android:id="@+id/textTypes"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/textNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID Do Pokemon"
+        android:textColor="@color/colorBlue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/img_Pokemon"
+        android:layout_toEndOf="@+id/img_Pokemon" />
 
-    <Button
-        android:onClick="voltarBusca"
+    <TextView
+        android:id="@+id/textID"
+        android:textColor="@color/colorRed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voltar" />
-</LinearLayout>
+        android:layout_alignStart="@+id/textNumero"
+        android:layout_below="@+id/textNumero"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome Do Pokemon"
+        android:textColor="@color/colorBlue"
+        android:layout_alignStart="@+id/textID"
+        android:layout_below="@+id/textID"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:textColor="@color/colorRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textNome"
+        android:layout_below="@+id/textNome"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textAltura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Altura Do Pokemon"
+        android:textColor="@color/colorBlue"
+        android:layout_alignStart="@+id/textName"
+        android:layout_below="@+id/textName"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textHeight"
+        android:textColor="@color/colorRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textAltura"
+        android:layout_below="@+id/textAltura"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso Do Pokemon"
+        android:textColor="@color/colorBlue"
+        android:layout_alignStart="@+id/textHeight"
+        android:layout_below="@+id/textHeight"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textWeight"
+        android:textColor="@color/colorRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textPeso"
+        android:layout_below="@+id/textPeso"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textTipos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipos"
+        android:textColor="@color/colorBlue"
+        android:layout_alignStart="@+id/textWeight"
+        android:layout_below="@+id/textWeight"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textTypes"
+        android:textColor="@color/colorRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textTipos"
+        android:layout_below="@+id/textTipos"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/progressConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textNumero"
+        android:layout_centerVertical="true"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="75dp"
+        android:onClick="voltarBusca"
+        android:text="Voltar"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+</RelativeLayout>
